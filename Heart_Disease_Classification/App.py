@@ -113,7 +113,7 @@ ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down           = preprocess_stslope(st.radi
 submit = st.button('Predict')
 
 if submit:
-    prediction = classifier.predict([[Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
+    prediction = classifier_model.predict([[Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
                    Sex_M, Sex_F, \
                    ChestPainType_ASY, ChestPainType_ATA, ChestPainType_NAP, ChestPainType_TA, \
                    RestingECG_LVH, RestingECG_Normal, RestingECG_ST, \
