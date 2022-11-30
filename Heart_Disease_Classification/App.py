@@ -80,7 +80,8 @@ def preprocess_stslope(ST_Slope):
 #Load joblib
 #joblib_in = open('model_rf.pkl', 'rb')
 #classifier = joblib.load(joblib_in)
-classifier = joblib.load('model_rf.pkl')
+with open(filename, 'rb') as classifier:
+    classifier = joblib.load('model_rf.pkl')
 
 st.title('Heart Disease Prediction')
 
