@@ -80,11 +80,11 @@ def preprocess_stslope(ST_Slope):
 
 #Load pickle
 
-def classifier(classifier):
-    with open('model_rf.pkl', 'rb') as f:
+
+with open('model_rf.pkl', 'rb') as f:
         classifier = pickle.load(f)
 
-        return classifier
+    
 
 st.title('Heart Disease Prediction')
 
@@ -110,6 +110,7 @@ ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down           = preprocess_stslope(st.radi
 
 #Predict
 submit = st.button('Predict')
+
 if submit:
     prediction = classifier.predict([[Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
                    Sex_M, Sex_F, \
@@ -117,7 +118,7 @@ if submit:
                    RestingECG_LVH, RestingECG_Normal, RestingECG_ST, \
                    ExerciseAngina_N, ExerciseAngina_Y, \
                    ST_Slope_Down, ST_Slope_Flat, ST_Slope_Up]])
-
+    
     if prediction == 1:
         st.write('Selamat, kamu SEHAT')
     else:
