@@ -1,5 +1,6 @@
 import streamlit as st
-import joblib
+import pickle
+from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(
     page_title="App",
@@ -77,9 +78,8 @@ def preprocess_stslope(ST_Slope):
 
     return ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down
 
-#Load joblib
-#joblib_in = open('model_rf.pkl', 'rb')
-#classifier = joblib.load(joblib_in)
+#Load pickle
+
 def classifier(classifier):
     with open('model_rf.pkl', 'rb') as f:
         classifier = pickle.load(f)
