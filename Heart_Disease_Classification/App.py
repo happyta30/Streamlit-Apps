@@ -82,8 +82,8 @@ def preprocess_stslope(ST_Slope):
 #Load joblib
 
 def classifier_model(classifier):
-with open('model_rf.pkl', 'rb') as f:
-     classifier = pickle.load(f)
+    with open('model_rf.pkl', 'rb') as f:
+        classifier = pickle.load(f)
 
         return classifier
 
