@@ -80,8 +80,11 @@ def preprocess_stslope(ST_Slope):
 #Load joblib
 #joblib_in = open('model_rf.pkl', 'rb')
 #classifier = joblib.load(joblib_in)
-with open(model_rf.pkl, 'rb') as classifier:
-    classifier = joblib.load('model_rf.pkl')
+def classifier(classifier):
+    with open('model_rf.pkl', 'rb') as f:
+        classifier = pickle.load(f)
+
+        return classifier
 
 st.title('Heart Disease Prediction')
 
