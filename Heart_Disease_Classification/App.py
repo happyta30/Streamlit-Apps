@@ -78,8 +78,9 @@ def preprocess_stslope(ST_Slope):
     return ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down
 
 #Load joblib
-joblib_in = open('model_rf.pkl', 'rb')
-classifier = joblib.load(joblib_in)
+#joblib_in = open('model_rf.pkl', 'rb')
+#classifier = joblib.load(joblib_in)
+classifier = joblib.load('model_rf.pkl')
 
 st.title('Heart Disease Prediction')
 
