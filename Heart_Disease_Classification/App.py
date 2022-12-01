@@ -1,8 +1,6 @@
 import streamlit as st
 import pickle
-from sklearn.ensemble import RandomForestClassifier
-from sklearn import preprocessing
-from sklearn.model_selection import train_test_split
+import joblib
 
 st.set_page_config(
     page_title="App",
@@ -80,12 +78,13 @@ def preprocess_stslope(ST_Slope):
 
     return ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down
 
-    
-#Load joblib
-def classifier_model(classifier):
-    with open('model_rf.pkl', 'rb') as f:
-        classifier = pickle.load(f)
-        return classifier
+#def classifier_model(classifier):
+    #with open('model_rf.pkl', 'rb') as f:
+        #classifier = pickle.load(f)
+
+        #return classifier
+classifier_model = joblib.load('model_rf.pkl')
+
 
 st.title('Heart Disease Prediction')
 
@@ -113,14 +112,17 @@ ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down           = preprocess_stslope(st.radi
 submit = st.button('Predict')
 
 if submit:
-    prediction = classifier_model.predict([[Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
-                   Sex_M, Sex_F, \
+        ls_data = [Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
+                   Sex_F, Sex_M, \
                    ChestPainType_ASY, ChestPainType_ATA, ChestPainType_NAP, ChestPainType_TA, \
                    RestingECG_LVH, RestingECG_Normal, RestingECG_ST, \
                    ExerciseAngina_N, ExerciseAngina_Y, \
-                   ST_Slope_Down, ST_Slope_Flat, ST_Slope_Up]])
-    
-    if prediction == 1:
-        st.write('Selamat, kamu SEHAT')
-    else:
-        st.write(" Maaf, sepertinya kamu memiliki penyakit jantung 😔. Semoga Lekas Sembuh!!!")
+                   ST_Slope_Down, ST_Slope_Flat, ST_Slope_Up]
+        
+        prediction_results = classifier_model.predict([ls_data])
+        prediction_results = prediction_results[0]
+        
+        if prediction_results == 1:
+            st.write(" Maaf, sepertinya kamu memiliki penyakit jantung 😔. Semoga Lekas Sembuh!!!")
+        elif prediction_results == 0:
+            st.write('Selamat, kamu SEHAT')
