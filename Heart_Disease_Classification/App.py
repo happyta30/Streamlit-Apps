@@ -87,7 +87,7 @@ pickle_in = open('model_rf.pkl', 'rb')
 classifier = pickle.load(pickle_in)
         #classifier = pickle.load(f)
 
-        return classifier
+        #return classifier
 
 st.title('Heart Disease Prediction')
 
