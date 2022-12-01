@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 st.set_page_config(
     page_title="App",
@@ -80,11 +82,9 @@ def preprocess_stslope(ST_Slope):
 
     
 #Load joblib
-
 def classifier_model(classifier):
     with open('model_rf.pkl', 'rb') as f:
         classifier = pickle.load(f)
-
         return classifier
 
 st.title('Heart Disease Prediction')
