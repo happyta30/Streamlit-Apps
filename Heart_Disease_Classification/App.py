@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 st.set_page_config(
     page_title="App",
