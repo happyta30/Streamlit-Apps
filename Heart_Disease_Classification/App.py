@@ -83,7 +83,7 @@ def classifier_model(classifier):
         classifier = pickle.load(f)
 
         return classifier
-#classifier_model = joblib.load('model_rf.pkl')
+
 
 
 st.title('Heart Disease Prediction')
@@ -112,17 +112,14 @@ ST_Slope_Up, ST_Slope_Flat, ST_Slope_Down           = preprocess_stslope(st.radi
 submit = st.button('Predict')
 
 if submit:
-        ls_data = [Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
-                   Sex_F, Sex_M, \
-                   ChestPainType_ASY, ChestPainType_ATA, ChestPainType_NAP, ChestPainType_TA, \
-                   RestingECG_LVH, RestingECG_Normal, RestingECG_ST, \
-                   ExerciseAngina_N, ExerciseAngina_Y, \
-                   ST_Slope_Down, ST_Slope_Flat, ST_Slope_Up]
-        
-        prediction_results = classifier_model.predict([ls_data])
-        prediction_results = prediction_results[0]
-        
-        if prediction_results == 1:
+    prediction_results = classifier_model.predict([[Age, RestingBP, Cholesterol, FastingBS, MaxHR, Oldpeak, \
+                                                    Sex_F, Sex_M, \
+                                                    ChestPainType_ASY, ChestPainType_ATA, ChestPainType_NAP, ChestPainType_TA, \
+                                                    RestingECG_LVH, RestingECG_Normal, RestingECG_ST, \
+                                                    ExerciseAngina_N, ExerciseAngina_Y, \
+                                                    ST_Slope_Down, ST_Slope_Flat, ST_Slope_Up]])
+
+    if prediction_results == 1:
             st.write(" Maaf, sepertinya kamu memiliki penyakit jantung 😔. Semoga Lekas Sembuh!!!")
-        elif prediction_results == 0:
+    else:
             st.write('Selamat, kamu SEHAT')
